@@ -411,7 +411,7 @@
             </a>
             <div class="nav_menu">
               <div class="nav_list">
-                <a href="services.html" class="nav_header-link w-inline-block">
+                <a href="packages.php" class="nav_header-link w-inline-block">
                   <div class="nav_link-inner">
                     <div class="nav_link">Our Services</div>
                     <div class="nav_link">Our Services</div>
@@ -477,7 +477,7 @@
         <div fs-scrolldisable-element="when-visible" class="open-menu">
           <div class="nav_menu is-tablet">
             <div class="nav_list">
-              <a href="services.html" class="nav_link heading-style-h3">What we do</a>
+              <a href="packages.php" class="nav_link heading-style-h3">What we do</a>
               <a href="about.html" class="nav_link heading-style-h3">About Perfect Horizon</a>
               <a href="contact.html" class="nav_link heading-style-h3">Get in touch</a>
             </div>
@@ -531,7 +531,7 @@
                   Strategies: Elevating Your Brand Beyond the
                   <span class="grdient_main">Horizon</span>
                 </h1>
-                <a fs-mirrorclick-element="" data-w-id="0553af30-30d5-f0a2-bcf1-18069f7d5f43" href="services.html"
+                <a fs-mirrorclick-element="" data-w-id="0553af30-30d5-f0a2-bcf1-18069f7d5f43" href="packages.php"
                   class="button w-inline-block">
                   <div class="text-size-regular text-style-allcaps">What we do</div>
                   <div class="button_ic is-default">
@@ -762,7 +762,7 @@
                   <div class="padding-section-large">
                     <div data-w-id="4ea59d1f-30b0-1ca6-088d-9479fb83217e" class="brand-block">
                       <div id="w-node-_4ea59d1f-30b0-1ca6-088d-9479fb8321d6-101c9ca6" class="vertical-wrapper">
-                        <a fs-mirrorclick-element="" href="services.html" class="button w-inline-block" style="margin-bottom: 30px;">
+                        <a fs-mirrorclick-element="" href="packages.php" class="button w-inline-block" style="margin-bottom: 30px;">
                           <div class="text-size-regular text-style-allcaps">See more of our services</div>
                           <div class="button_ic is-default" style="display: flex; opacity: 1;">
                             <div class="ic ic-size-medium w-embed">
@@ -1506,7 +1506,7 @@
                   <div class="footer_nav-title">Company</div>
                   <div class="footer_nav-list">
                     <a href="about.html" class="footer_link">About</a>
-                    <a href="services.html" class="footer_link">Services</a>
+                    <a href="packages.php" class="footer_link">Services</a>
                   </div>
                 </div>
                 <div class="footer_nav-column">

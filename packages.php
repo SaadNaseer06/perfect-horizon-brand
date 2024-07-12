@@ -337,15 +337,41 @@
         <span class="close">&times;</span>
         <h2 id="packageName">Package Name</h2>
         <h4 id="packagePrice">Package Price</h4>
-        <form id="purchaseForm">
-          <input type="text" id="name" name="name" placeholder="Name" required><br><br>
-          <input type="email" id="email" name="email" placeholder="Email" required><br><br>
-          <input type="text" id="phone" name="phone" placeholder="Phone" required><br><br>
-          <textarea id="message" name="message" rows="4" placeholder="Message" required></textarea><br><br>
-          <button type="submit">Submit</button>
+        <form method="POST" action="thank-you.php">
+          <input type="hidden" name="packageName" id="modal-package" value="">
+          <input type="hidden" name="packagePrice" id="modal-price" value="">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="field gs_reveal gs_reveal_fromDown">
+                <input type="text" placeholder="First Name" name="user_name">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field gs_reveal gs_reveal_fromDown">
+                <input type="text" placeholder="Company Name" name="service">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field gs_reveal gs_reveal_fromDown">
+                <input type="email" placeholder="Email Address" name="email">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field gs_reveal gs_reveal_fromDown">
+                <input type="tel" placeholder="Phone Number" name="phone">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="field fieldtextarea gs_reveal gs_reveal_fromDown">
+                <textarea placeholder="Message" name="message"></textarea>
+              </div>
+              <button class="gs_reveal gs_reveal_fromDown" type="submit" name="submit">Submit Now</button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
+    <div id="overlay"></div>
 
     <div class="global-styles w-embed">
       <style>
@@ -2478,55 +2504,28 @@ a,
         opacity: 1;
       }
     }
+
+    .modal-content input {
+      width: 100%;
+      padding: 8px;
+      color: black;
+    }
+
+    .modal-content textarea {
+      width: 100%;
+      padding: 8px;
+      color: black;
+    }
+
+    button.gs_reveal.gs_reveal_fromDown {
+      background: rgb(128, 97, 166);
+      padding: 10px;
+      display: flex;
+      margin: auto;
+      margin-top: 5px;
+    }
   </style>
 
-  <script>
-    document.getElementById('purchaseForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent the form from submitting the default way
-
-      // Capture form data
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const phone = document.getElementById('phone').value;
-      const message = document.getElementById('message').value;
-
-      // Capture package details
-      const packageElement = document.querySelector('.pricing-body');
-      const packageName = packageElement.querySelector('.buyNowBtn').dataset.packageName;
-      const packagePrice = packageElement.querySelector('.buyNowBtn').dataset.packagePrice;
-
-      // Prepare data to send to the server
-      const formData = {
-        name: name,
-        email: email,
-        phone: phone,
-        message: message,
-        packageName: packageName,
-        packagePrice: packagePrice
-      };
-
-      // Send data to the server
-      fetch('save_package.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            alert('Data saved successfully!');
-          } else {
-            alert('An error occurred while saving data.');
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('An error occurred while saving data.');
-        });
-    });
-  </script>
 
 
 
@@ -2651,20 +2650,35 @@ a,
       }
     });
   </script>
+  <!-- <script>
+    // Set package name and price dynamically from your page
+    var packageName = document.getElementById('packageName');
+    var packagePrice = document.getElementById('packagePrice');
+    packageName.value = document.getElementById('packageName').innerText.trim();
+    packagePrice.value = document.getElementById('packagePrice').innerText.trim();
+  </script> -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       var modal = document.getElementById("popupModal");
       var overlay = document.getElementById("overlay");
       var closeBtn = document.getElementsByClassName("close")[0];
-      var packageName = document.getElementById("packageName");
-      var packagePrice = document.getElementById("packagePrice");
+      var packageNameInput = document.getElementById("modal-package");
+      var packagePriceInput = document.getElementById("modal-price");
+      var packageNameDisplay = document.getElementById("packageName");
+      var packagePriceDisplay = document.getElementById("packagePrice");
 
       var buyNowButtons = document.getElementsByClassName("buyNowBtn");
 
       Array.from(buyNowButtons).forEach(function(btn) {
         btn.onclick = function() {
-          packageName.innerText = btn.getAttribute("data-package-name");
-          packagePrice.innerText = btn.getAttribute("data-package-price");
+          var packageName = btn.getAttribute("data-package-name");
+          var packagePrice = btn.getAttribute("data-package-price");
+
+          packageNameInput.value = packageName;
+          packagePriceInput.value = packagePrice;
+          packageNameDisplay.innerText = packageName;
+          packagePriceDisplay.innerText = packagePrice;
+
           modal.style.display = "block";
           overlay.style.display = "block";
         };
@@ -2683,6 +2697,42 @@ a,
       };
     });
   </script>
+  <!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var modal = document.getElementById("popupModal");
+      var overlay = document.getElementById("overlay");
+      var closeBtn = document.getElementsByClassName("close")[0];
+      var packageNameInput = document.getElementById("modal-package");
+      var packagePriceInput = document.getElementById("modal-price");
+
+      var buyNowButtons = document.getElementsByClassName("buyNowBtn");
+
+      Array.from(buyNowButtons).forEach(function(btn) {
+        btn.onclick = function() {
+          var packageName = btn.getAttribute("data-package-name");
+          var packagePrice = btn.getAttribute("data-package-price");
+
+          packageNameInput.value = packageName;
+          packagePriceInput.value = packagePrice;
+
+          modal.style.display = "block";
+          overlay.style.display = "block";
+        };
+      });
+
+      closeBtn.onclick = function() {
+        modal.style.display = "none";
+        overlay.style.display = "none";
+      };
+
+      window.onclick = function(event) {
+        if (event.target == modal || event.target == overlay) {
+          modal.style.display = "none";
+          overlay.style.display = "none";
+        }
+      };
+    });
+  </script> -->
 </body>
 
 </html>
